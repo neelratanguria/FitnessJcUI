@@ -6,16 +6,20 @@ import androidx.activity.compose.setContent
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.lazy.LazyRow
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.*
 import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.ExitToApp
 import androidx.compose.material.icons.filled.Fullscreen
 import androidx.compose.material.icons.filled.Notifications
 import androidx.compose.material.icons.filled.Person
-import androidx.compose.material.icons.outlined.*
+import androidx.compose.material.icons.outlined.RadioButtonUnchecked
+import androidx.compose.material.icons.outlined.Tune
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
@@ -183,12 +187,27 @@ fun Content() {
             }
         }
     ) {
-        Surface(
+        Column(
             Modifier.padding(it)
         ) {
-            
+            Spacer(modifier = Modifier.size(15.dp))
+
+            LazyRow(
+                horizontalArrangement = Arrangement.spacedBy(12.dp)
+            ) {
+                items(workOutCategories.size) {
+                    WorkOutType(workout = workOutCategories[it])
+                }
+            }
         }
     }
+}
+
+@Composable
+fun WorkOutType(workout: String) {
+    val selected by remember { mutableStateOf(false) }
+    val backgroundColor = if (selected) Color.Black else Color.White
+    val textColor = if (selected) Color.White else Color.Black
 }
 
 @Preview(showBackground = true)
