@@ -81,6 +81,8 @@ dependencies {
     // Optional - Integration with LiveData
     implementation 'androidx.compose.runtime:runtime-livedata'
 
+    implementation "androidx.compose.material:material-icons-extended:$compose_ui_version"
+
     // Hilt DI
     implementation "com.google.dagger:hilt-android:$hilt_version"
     kapt "com.google.dagger:hilt-compiler:$hilt_version"

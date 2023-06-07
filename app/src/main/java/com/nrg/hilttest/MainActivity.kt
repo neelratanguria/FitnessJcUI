@@ -7,9 +7,14 @@ import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.CircleShape
+import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.*
 import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.ExitToApp
+import androidx.compose.material.icons.filled.Fullscreen
 import androidx.compose.material.icons.filled.Notifications
+import androidx.compose.material.icons.filled.Person
+import androidx.compose.material.icons.outlined.*
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -114,7 +119,68 @@ fun Content() {
                  }
         },
         bottomBar = {
+            BottomAppBar(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .clip(
+                        RoundedCornerShape(
+                            topStart = 20.dp,
+                            topEnd = 20.dp
+                        )
+                    ),
+                elevation = 5.dp,
+                backgroundColor = Color.Black
+            ) {
+                Row(
+                    modifier = Modifier.padding(horizontal = 20.dp),
+                    horizontalArrangement = Arrangement.SpaceEvenly
+                ) {
+                    BottomNavigationItem(
+                        selected = true,
+                        onClick = { },
+                        selectedContentColor = Color.White,
+                        icon = {
+                            Icon(imageVector = Icons.Filled.Person,
+                                contentDescription = "Bottom nav person")
 
+                        }
+                    )
+                    BottomNavigationItem(
+                        selected = false,
+                        onClick = { },
+                        selectedContentColor = Color.White,
+                        icon = {
+                            Icon(imageVector = Icons.Default.Fullscreen,
+                                contentDescription = "Bottom nav person")
+
+                        }
+                    )
+                    BottomNavigationItem(
+                        selected = false,
+                        onClick = { },
+                        selectedContentColor = Color.White,
+                        icon = {
+                            Icon(
+                                imageVector = Icons.Outlined.Tune,
+                                contentDescription = "Bottom nav person"
+                            )
+                        }
+                    )
+                    BottomNavigationItem(
+                        selected = false,
+                        onClick = { },
+                        selectedContentColor = Color.White,
+                        icon = {
+                            Icon(
+                                imageVector = Icons.Outlined.RadioButtonUnchecked,
+                                contentDescription = "Bottom nav person"
+                            )
+
+                        }
+                    )
+
+                }
+            }
         }
     ) {
         Surface(
