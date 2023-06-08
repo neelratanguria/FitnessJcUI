@@ -24,6 +24,7 @@ import androidx.compose.ui.draw.clip
 import androidx.compose.ui.draw.scale
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
+import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.SpanStyle
 import androidx.compose.ui.text.buildAnnotatedString
@@ -50,75 +51,76 @@ fun Content() {
     val workOutCategories = listOf("Full body", "Cardio", "Cross Fit", "Cyclist", "Glutes", "Power")
     Scaffold(
         topBar = {
-                 TopAppBar(
-                     modifier = Modifier.padding(16.dp),
-                     elevation = 0.dp,
-                     backgroundColor = Color.White
-                 ) {
-                     Row(
-                         modifier = Modifier
-                             .fillMaxSize()
-                             .padding(horizontal = 5.dp),
-                         verticalAlignment = Alignment.CenterVertically
-                     ) {
-                         Box(
-                             modifier = Modifier
-                                 .fillMaxHeight()
-                                 .aspectRatio(1f)
-                                 .clip(CircleShape)
-                                 .background(Color.Black)
-                         ) {
-                             Image(
-                                 painter = painterResource(id = R.drawable.profile),
-                                 contentDescription = "Profile Picture",
-                                 contentScale = ContentScale.Crop,
-                                 modifier = Modifier
-                                     .scale(2f)
-                                     .aspectRatio(.5f)
-                                     .offset(y = 12.dp)
-                                     .align(Alignment.TopCenter)
+            TopAppBar(
+                modifier = Modifier.padding(16.dp),
+                elevation = 0.dp,
+                backgroundColor = Color.White
+            ) {
+                Row(
+                    modifier = Modifier
+                        .fillMaxSize()
+                        .padding(horizontal = 5.dp),
+                    verticalAlignment = Alignment.CenterVertically
+                ) {
+                    Box(
+                        modifier = Modifier
+                            .fillMaxHeight()
+                            .aspectRatio(1f)
+                            .clip(CircleShape)
+                            .background(Color.Black)
+                    ) {
+                        Image(
+                            painter = painterResource(id = R.drawable.profile),
+                            contentDescription = "Profile Picture",
+                            contentScale = ContentScale.Crop,
+                            modifier = Modifier
+                                .scale(2f)
+                                .aspectRatio(.5f)
+                                .offset(y = 12.dp)
+                                .align(Alignment.TopCenter)
 
-                             )
-                         }
+                        )
+                    }
 
 
-                         Text(
-                             buildAnnotatedString {
-                             append("Hello, ")
-                             withStyle(
-                                 SpanStyle(
-                                     color = Color.Black,
-                                     fontWeight = FontWeight.Bold,
-                                     fontSize = 20.sp
-                                 )
-                             ) {
-                                 append("Gláucio")
-                             }
-                         },
-                             modifier = Modifier.padding(start = 10.dp))
-                         
-                         Spacer(modifier = Modifier.weight(1f))
+                    Text(
+                        buildAnnotatedString {
+                            append("Hello, ")
+                            withStyle(
+                                SpanStyle(
+                                    color = Color.Black,
+                                    fontWeight = FontWeight.Bold,
+                                    fontSize = 20.sp
+                                )
+                            ) {
+                                append("Gláucio")
+                            }
+                        },
+                        modifier = Modifier.padding(start = 10.dp)
+                    )
 
-                         BadgedBox(
-                             modifier = Modifier.padding(end = 10.dp),
-                             badge = {
-                             Badge(
-                                 Modifier
-                                     .clip(CircleShape)
-                                     .background(Color.Red)
-                                     .align(Alignment.BottomEnd)
-                             ){
-                                 Text(text = "1")
-                             }
-                         }) {
-                             Icon(
-                                 imageVector = Icons.Filled.Notifications,
-                                 contentDescription = "Notification button",
-                                 tint = Color.Black
-                             )
-                         }
-                     }
-                 }
+                    Spacer(modifier = Modifier.weight(1f))
+
+                    BadgedBox(
+                        modifier = Modifier.padding(end = 10.dp),
+                        badge = {
+                            Badge(
+                                Modifier
+                                    .clip(CircleShape)
+                                    .background(Color.Red)
+                                    .align(Alignment.BottomEnd)
+                            ) {
+                                Text(text = "1")
+                            }
+                        }) {
+                        Icon(
+                            imageVector = Icons.Filled.Notifications,
+                            contentDescription = "Notification button",
+                            tint = Color.Black
+                        )
+                    }
+                }
+            }
         },
         bottomBar = {
             BottomAppBar(
@@ -142,8 +144,10 @@ fun Content() {
                         onClick = { },
                         selectedContentColor = Color.White,
                         icon = {
-                            Icon(imageVector = Icons.Filled.Person,
-                                contentDescription = "Bottom nav person")
+                            Icon(
+                                imageVector = Icons.Filled.Person,
+                                contentDescription = "Bottom nav person"
+                            )
 
                         }
                     )
@@ -152,8 +156,10 @@ fun Content() {
                         onClick = { },
                         selectedContentColor = Color.White,
                         icon = {
-                            Icon(imageVector = Icons.Default.Fullscreen,
-                                contentDescription = "Bottom nav person")
+                            Icon(
+                                imageVector = Icons.Default.Fullscreen,
+                                contentDescription = "Bottom nav person"
+                            )
 
                         }
                     )
@@ -189,12 +195,54 @@ fun Content() {
             Modifier.padding(it)
         ) {
             Spacer(modifier = Modifier.size(15.dp))
-
             LazyRow(
                 horizontalArrangement = Arrangement.spacedBy(12.dp)
             ) {
                 items(workOutCategories.size) {
                     WorkOutType(workout = workOutCategories[it])
+                }
+            }
+            Spacer(modifier = Modifier.size(30.dp))
+
+            Box(
+                Modifier
+                    .padding(horizontal = 20.dp)
+                    .clip(RoundedCornerShape(10))
+                    .background(color = colorResource(id = R.color.purple_200))
+            ) {
+                Column(
+                    Modifier.padding(
+                        horizontal = 20.dp,
+                        vertical = 22.dp
+                    )
+                ) {
+                    Row(
+                        Modifier.fillMaxWidth(),
+                        horizontalArrangement = Arrangement.SpaceBetween,
+                        verticalAlignment = Alignment.CenterVertically
+                    ) {
+                        Text(
+                            text = "Loose\nbelly fat",
+                            color = Color.Black,
+                            fontWeight = FontWeight.Bold,
+                            fontSize = 30.sp
+                        )
+
+                        Button(
+                            shape = RoundedCornerShape(20.dp),
+                            contentPadding = PaddingValues(6.dp),
+                            onClick = {},
+                            colors = ButtonDefaults.textButtonColors(
+                                backgroundColor = colorResource(id = R.color.purple_200)
+                            )
+                        ) {
+
+                            Text(text = "Middle level", color = Color.White, fontSize = 18.sp)
+
+                        }
+                    }
+                    
+                    Spacer(modifier = Modifier.size(15.dp))
                 }
             }
         }
