@@ -3,6 +3,7 @@ package com.nrg.hilttest
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
+import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
@@ -16,10 +17,7 @@ import androidx.compose.material.icons.filled.Notifications
 import androidx.compose.material.icons.filled.Person
 import androidx.compose.material.icons.outlined.RadioButtonUnchecked
 import androidx.compose.material.icons.outlined.Tune
-import androidx.compose.runtime.Composable
-import androidx.compose.runtime.getValue
-import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.remember
+import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
@@ -205,9 +203,21 @@ fun Content() {
 
 @Composable
 fun WorkOutType(workout: String) {
-    val selected by remember { mutableStateOf(false) }
+    var selected by remember { mutableStateOf(false) }
     val backgroundColor = if (selected) Color.Black else Color.White
     val textColor = if (selected) Color.White else Color.Black
+
+    OutlinedButton(
+        shape = RoundedCornerShape(20.dp),
+        contentPadding = PaddingValues(6.dp),
+        border = BorderStroke(width = 1.dp, color = Color.Gray),
+        onClick = { selected = !selected },
+        colors = ButtonDefaults.textButtonColors(
+            backgroundColor = backgroundColor
+        )
+    ) {
+        Text(text = workout, color = textColor, fontSize = 18.sp)
+    }
 }
 
 @Preview(showBackground = true)
